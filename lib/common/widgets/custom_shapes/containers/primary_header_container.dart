@@ -11,15 +11,16 @@ class TPrimaryHeaderContainer extends StatelessWidget {
   });
 
   final Widget child;
+
   @override
   Widget build(BuildContext context) {
     return TCurvedEdgeWidget(
       child: Container(
         color: TColors.primary,
-        padding: const EdgeInsets.only(bottom: 0),
-        height: 400,
+        // padding: const EdgeInsets.only(bottom: 0),
         child: Stack(
           children: [
+            /// -- Background Custom Shapes
             Positioned(
                 top: -150,
                 right: -250,

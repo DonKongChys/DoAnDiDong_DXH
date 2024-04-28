@@ -1,4 +1,4 @@
-import 'package:TShop/features/authentication/screens/signup/widgets/signdup_form.dart';
+import 'package:TShop/features/authentication/screens/signup/widgets/signup_form.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/constants/text_string.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';

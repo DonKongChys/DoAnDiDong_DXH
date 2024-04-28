@@ -3,16 +3,16 @@ import 'package:TShop/common/widgets/custom_shapes/containers/primary_header_con
 import 'package:TShop/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:TShop/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
+import 'package:TShop/features/personalization/screens/profile/profile.dart';
 import 'package:TShop/features/shop/screens/order/order.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
 
-class SettingScreen extends StatelessWidget {
-  const SettingScreen({super.key});
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class SettingScreen extends StatelessWidget {
           TPrimaryHeaderContainer(
               child: Column(
             children: [
-              ///AppBar
+              /// AppBar
               TAppBar(
                 title: Text(
                   'Account',
@@ -34,12 +34,13 @@ class SettingScreen extends StatelessWidget {
                       .apply(color: TColors.white),
                 ),
               ),
-              const SizedBox(
-                height: TSizes.spaceBtwItems,
-              ),
 
               ///User profile card
-              const TUserProfile()
+              TUserProfileTile(
+                  onPressed: () => Get.to(() => const ProfileScreen())),
+              const SizedBox(
+                height: TSizes.spaceBtwSections,
+              ),
             ],
           )),
 
@@ -70,11 +71,10 @@ class SettingScreen extends StatelessWidget {
                   onTap: () {},
                 ),
                 TSettingsMenuTile(
-                  icon: Iconsax.bag_tick,
-                  title: "My Orders",
-                  subTitle: "In-process and Completed Orders",
-                  onTap: () => Get.to(() => const OrderScreen())
-                ),
+                    icon: Iconsax.bag_tick,
+                    title: "My Orders",
+                    subTitle: "In-process and Completed Orders",
+                    onTap: () => Get.to(() => const OrderScreen())),
                 TSettingsMenuTile(
                   icon: Iconsax.bank,
                   title: "Bank Account",
@@ -140,7 +140,13 @@ class SettingScreen extends StatelessWidget {
                 SizedBox(
                     width: double.infinity,
                     child: OutlinedButton(
-                        onPressed: () {}, child: const Text("Logout"))),
+                      onPressed: () {},
+                      style: OutlinedButton.styleFrom(
+                        side: const BorderSide(
+                            color: Color.fromARGB(255, 148, 12, 2)), // Thiết lập màu của đường viền
+                      ),
+                      child: const Text("Logout"),
+                    )),
                 const SizedBox(height: TSizes.spaceBtwSections * 2.5),
               ],
             ),

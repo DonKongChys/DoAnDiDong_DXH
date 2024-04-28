@@ -1,10 +1,7 @@
 import 'package:TShop/common/widgets/appbar/appbar.dart';
-import 'package:TShop/common/widgets/layouts/grid_layout.dart';
-import 'package:TShop/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:TShop/common/widgets/products/sortable/sortable_products.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 
 class AllProducts extends StatelessWidget {
   const AllProducts({super.key});
@@ -25,4 +22,3 @@ class AllProducts extends StatelessWidget {
     );
   }
 }
-

@@ -1,5 +1,3 @@
-
-
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/constants/text_string.dart';
@@ -16,62 +14,73 @@ class ResetPassword extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         actions: [
-          IconButton(onPressed: (){}, icon: const Icon(CupertinoIcons.clear))
+          IconButton(onPressed: () {}, icon: const Icon(CupertinoIcons.clear))
         ],
       ),
-      body:  Padding(padding: const EdgeInsets.all(TSizes.defaultSpace),
-      child: Column(
-        children: [
-              ///Image
-              Image(
-                image: const AssetImage(TImages.deliveriedEmailIllustration),
-                width: THelperFunctions.screenWidth()*0.6,
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
+      body: Padding(
+        padding: const EdgeInsets.all(TSizes.defaultSpace),
+        child: Column(
+          children: [
+            ///Image
+            Image(
+              image: const AssetImage(TImages.deliveriedEmailIllustration),
+              width: THelperFunctions.screenWidth() * 0.6,
+            ),
+            const SizedBox(
+              height: TSizes.spaceBtwSections,
+            ),
 
-              ///Tittle and subtittle
-              Text(
-                TTexts.changeYourPasswordTitle,
-                style: Theme.of(context).textTheme.headlineMedium,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwItems,
-              ),
+            ///Tittle and subtittle
+            Text(
+              TTexts.changeYourPasswordTitle,
+              style: Theme.of(context).textTheme.headlineMedium,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
+              height: TSizes.spaceBtwItems,
+            ),
 
-              Text(
-                TTexts.changeYourPasswordSubTittle,
-                style: Theme.of(context).textTheme.bodyMedium,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwItems,
-              ),
+            Text(
+              TTexts.changeYourPasswordSubTittle,
+              style: Theme.of(context).textTheme.bodyMedium,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
+              height: TSizes.spaceBtwItems,
+            ),
 
-              ///Button
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: (){},
-                  child: const Text(TTexts.done),
+            ///Button
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color.fromARGB(
+                          255, 145, 14, 4)), // Thiết lập màu nền
+                  overlayColor: MaterialStateProperty.all<Color>(
+                      Colors.red.shade200), // Thiết lập màu overlay khi nhấn
+                  side: MaterialStateProperty.all<BorderSide>(const BorderSide(
+                      color: Color.fromARGB(
+                          255, 137, 13, 4))), // Thiết lập màu viền
                 ),
+                child: const Text(TTexts.done),
               ),
-              const SizedBox(
-                height: TSizes.spaceBtwItems,
-              ),
+            ),
+            const SizedBox(
+              height: TSizes.spaceBtwItems,
+            ),
 
-              SizedBox(
-                width: double.infinity,
-                child: TextButton(
-                  onPressed: (){},
-                  child: const Text(TTexts.resendEmail),
-                ),
+            SizedBox(
+              width: double.infinity,
+              child: TextButton(
+                onPressed: () {},
+                child: const Text(TTexts.resendEmail),
               ),
-            ],
-      ),),
-
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

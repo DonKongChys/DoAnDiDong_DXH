@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class THelperFunctions {
-  Map<String, Color> basicColors = {
+  static Map<String, Color> basicColors = {
     'Red': Colors.red,
     'Pink': Colors.pink,
     'Purple': Colors.purple,
@@ -26,7 +26,7 @@ class THelperFunctions {
     'White': Colors.white,
   };
 
-  Color? getColor(String value) {
+  static Color? getColor(String value) {
     return basicColors[value];
   }
 

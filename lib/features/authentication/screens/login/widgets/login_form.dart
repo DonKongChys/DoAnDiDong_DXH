@@ -1,6 +1,3 @@
-
-
-
 import 'package:TShop/features/authentication/screens/password_configuration/forget_password.dart';
 import 'package:TShop/features/authentication/screens/signup/signup.dart';
 import 'package:TShop/navigation_menu.dart';
@@ -19,8 +16,7 @@ class TLoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       child: Padding(
-        padding:
-            const EdgeInsets.symmetric(vertical: TSizes.spaceBtwSections),
+        padding: const EdgeInsets.symmetric(vertical: TSizes.spaceBtwSections),
         child: Column(children: [
           ///Email
           TextFormField(
@@ -32,7 +28,7 @@ class TLoginForm extends StatelessWidget {
           const SizedBox(
             height: TSizes.spaceBtwInputFields,
           ),
-    
+
           ///Password
           TextFormField(
             decoration: const InputDecoration(
@@ -43,7 +39,7 @@ class TLoginForm extends StatelessWidget {
           const SizedBox(
             height: TSizes.spaceBtwInputFields / 2,
           ),
-    
+
           ///Remember me and forget password
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -52,33 +48,48 @@ class TLoginForm extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Checkbox(value: true, onChanged: (value) {}),
+                  Checkbox(value: true, onChanged: (value) {}, activeColor: const Color.fromARGB(255, 163, 14, 4), checkColor: Colors.white,),
                   const Text(TTexts.rememberMe)
                 ],
               ),
-    
+
               ///Forget password
               TextButton(
-                  onPressed: () => Get.to(()=> const FogetPassword()),
+                  onPressed: () => Get.to(() => const FogetPassword()),
                   child: const Text(TTexts.forgetPassword))
             ],
           ),
-    
+
           ///Sign in button
           SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                  onPressed: () => Get.to(()=>const NavigationMenu()), child: const Text(TTexts.signIn))),
+                  onPressed: () => Get.to(() => const NavigationMenu()),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        const Color.fromARGB(255, 156, 12, 2)), // Thiết lập màu nền
+                    overlayColor: MaterialStateProperty.all<Color>(
+                        Colors.red.shade200), // Thiết lập màu overlay khi nhấn
+                    side: MaterialStateProperty.all<BorderSide>(
+                        const BorderSide(
+                            color: Color.fromARGB(255, 149, 13, 3))), // Thiết lập màu viền
+                  ),
+                  child: const Text(TTexts.signIn))),
           const SizedBox(
             height: TSizes.spaceBtwItems,
           ),
-    
+
           ///Sign up button
           SizedBox(
               width: double.infinity,
               child: OutlinedButton(
                   onPressed: () => Get.to(() => const SignupScreen()),
-                  child: const Text(TTexts.createAccount))),
+                  style: OutlinedButton.styleFrom(
+                    side: const BorderSide(
+                        color: Color.fromARGB(255, 149, 16, 7)), // Thiết lập màu của đường viền
+                  ),
+                  child: const Text(TTexts.createAccount),
+                  )),
           // const SizedBox(
           //   height: TSizes.spaceBtwItems,
           // )

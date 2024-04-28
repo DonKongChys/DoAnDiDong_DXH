@@ -11,11 +11,8 @@ import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({super.key});
@@ -76,6 +73,14 @@ class CheckoutScreen extends StatelessWidget {
                 onPressed: () => Get.offAll(() => const NavigationMenu()),
               ), 
           ),
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  const Color.fromARGB(255, 145, 14, 4)), // Thiết lập màu nền
+              overlayColor: MaterialStateProperty.all<Color>(
+                  Colors.red.shade200), // Thiết lập màu overlay khi nhấn
+              side: MaterialStateProperty.all<BorderSide>(
+                  const BorderSide(color: Color.fromARGB(255, 137, 13, 4))), // Thiết lập màu viền
+            ),
           child: const Text('Checkout \$590')),
        ),
     );

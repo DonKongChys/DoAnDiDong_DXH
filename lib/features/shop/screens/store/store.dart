@@ -60,7 +60,7 @@ class StoreScreen extends StatelessWidget {
                       /// --- Featured Brands
                       TSectionHeading(
                         title: 'Featured Brands',
-                        onPressed: () => Get.to(()=> const AllBrandsScreen()),
+                        onPressed: () => Get.to(() => const AllBrandsScreen()),
                       ),
                       const SizedBox(
                         height: TSizes.spaceBtwItems / 1.5,
@@ -71,7 +71,7 @@ class StoreScreen extends StatelessWidget {
                           itemCount: 4,
                           mainAxisExtent: 80,
                           itemBuilder: (_, index) {
-                            return const TBrandCard(showBorder: false);
+                            return const TBrandCard(showBorder: true);
                           }),
                     ],
                   ),

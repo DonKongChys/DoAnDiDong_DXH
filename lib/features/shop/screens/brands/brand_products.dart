@@ -12,6 +12,7 @@ class BrandProducts extends StatelessWidget {
     return const Scaffold(
       appBar: TAppBar(
         title: Text("Nike"),
+        showBackArrow: true,
       ),
       body: SingleChildScrollView(
         child: Padding(

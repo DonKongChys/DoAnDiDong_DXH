@@ -19,7 +19,7 @@ class TermConditionCheckBox extends StatelessWidget {
         SizedBox(
             width: 24,
             height: 24,
-            child: Checkbox(value: true, onChanged: (value) {})),
+            child: Checkbox(value: true, onChanged: (value) {}, activeColor: TColors.primary,)),
         const SizedBox(
           width: TSizes.spaceBtwItems,
         ),
@@ -38,7 +38,7 @@ class TermConditionCheckBox extends StatelessWidget {
               text: '${TTexts.and} ',
               style: Theme.of(context).textTheme.bodySmall),
           TextSpan(
-              text: '${TTexts.termsOfUse}',
+              text: TTexts.termsOfUse,
               style: Theme.of(context).textTheme.bodyMedium!.apply(
                     color: dark ? TColors.white : TColors.primary,
                     decoration: TextDecoration.underline,

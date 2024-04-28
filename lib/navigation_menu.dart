@@ -1,4 +1,4 @@
-import 'package:TShop/features/personalization/screens/settings.dart';
+import 'package:TShop/features/personalization/screens/settings/settings.dart';
 import 'package:TShop/features/shop/screens/home/home.dart';
 import 'package:TShop/features/shop/screens/store/store.dart';
 import 'package:TShop/features/shop/screens/wishlist/wishlist.dart';
@@ -60,6 +60,6 @@ class NavigationController extends GetxController {
     const HomeScreen(),
     const StoreScreen(),
     const FavouriteScreen(),
-    const SettingScreen()
+    const SettingsScreen()
   ];
 }

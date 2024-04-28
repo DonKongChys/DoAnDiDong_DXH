@@ -5,12 +5,14 @@ import 'package:TShop/common/widgets/images/t_rounded_image.dart';
 import 'package:TShop/common/widgets/texts/product_price_text.dart';
 import 'package:TShop/common/widgets/texts/product_title_text.dart';
 import 'package:TShop/common/widgets/texts/t_brand_title_with_verified_icon.dart';
+import 'package:TShop/features/shop/screens/product_details/product_detail.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:get/get.dart';
 
 class TProductCardVertical extends StatelessWidget {
   const TProductCardVertical({super.key});
@@ -20,7 +22,7 @@ class TProductCardVertical extends StatelessWidget {
     final dark = THelperFunctions.isDarkMode(context);
 
     return GestureDetector(
-      onTap: () {},
+      onTap: () => Get.to(() => const ProductDetailScreen()),
       child: Container(
         width: 180,
         padding: const EdgeInsets.all(1),
@@ -73,7 +75,7 @@ class TProductCardVertical extends StatelessWidget {
 
           /// -- Details
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: TSizes.sm), // <-----.
+            padding: EdgeInsets.symmetric(horizontal: TSizes.sm),
             child: SizedBox(
               width: double.infinity,
               child: Column(

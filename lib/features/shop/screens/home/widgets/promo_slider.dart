@@ -23,6 +23,7 @@ class TPromoSlider extends StatelessWidget {
                 .map((url) => TRoundedImage(
                       imageUrl: url,
                       applyImageRadius: true,
+                      padding: const EdgeInsets.all(TSizes.sm),
                     ))
                 .toList(),
             options: CarouselOptions(
