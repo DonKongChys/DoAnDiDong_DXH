@@ -85,10 +85,13 @@ class ProductRepository extends GetxController {
               .where('Brand.Id', isEqualTo: int.parse(brandId))
               .limit(limit)
               .get();
-
+      // print(brandId);
+      // print(querySnapshot.docs);
       final products = querySnapshot.docs
           .map((doc) => ProductModel.fromSnapshot(doc))
           .toList();
+      
+      // print(products);
 
       return products;
     } on FirebaseException catch (e) {
@@ -107,17 +110,18 @@ class ProductRepository extends GetxController {
       final productCategoryQuery = limit == -1
           ? await _db
               .collection('ProductCategory')
-              .where('categoryId', isEqualTo: categoryId)
+              .where('CategoryId', isEqualTo: int.parse(categoryId))
               .get()
           : await _db
               .collection('ProductCategory')
-              .where('categoryId', isEqualTo: categoryId)
+              .where('CategoryId', isEqualTo: int.parse(categoryId))
               .limit(limit)
               .get();
 
+
       // Extract product ids
       List<String> productIds = productCategoryQuery.docs
-          .map((doc) => doc['categoryId'] as String)
+          .map((doc) => doc['ProductId'].toString())
           .toList();
 
       // Products query

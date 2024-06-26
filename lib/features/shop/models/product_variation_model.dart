@@ -41,10 +41,10 @@ class ProductVariationModel {
     if(data.isEmpty) return ProductVariationModel.empty();
     return ProductVariationModel(
       id: (data['Id'] ?? '').toString(),
-      originalPrice: double.parse((data['Price'] ?? 0.0).toString()),
+      originalPrice: double.parse((data['OriginalPrice'] ?? 0.0).toString().replaceAll('.', '')),
       sku: data['SKU'] ?? '',
       stock: data['Stock'] ?? 0,
-      salePrice: double.parse((data['SalePrice'] ?? 0.0).toString()), 
+      salePrice: double.parse((data['SalePrice'] ?? 0.0).toString().replaceAll('.', '')), 
       image: data['Image'] ?? '',
       attributeValues: Map<String, dynamic>.from(data['AttributeValues']),
     ); 

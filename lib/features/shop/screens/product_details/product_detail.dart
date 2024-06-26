@@ -21,7 +21,7 @@ class ProductDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const TBottomAddToCart(),
+      bottomNavigationBar:  TBottomAddToCart(product: product),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -52,7 +52,7 @@ class ProductDetailScreen extends StatelessWidget {
                   SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                          onPressed: () {}, child: const Text('Checkout'))),
+                          onPressed: () {}, child: const Text('Thanh toán'))),
                   const SizedBox(height: TSizes.spaceBtwSections),
 
                   /// - Description
@@ -63,8 +63,8 @@ class ProductDetailScreen extends StatelessWidget {
                       product.description ?? '',
                       trimLines: 3,
                       trimMode: TrimMode.Line,
-                      trimCollapsedText: 'Show more',
-                      trimExpandedText: 'Show less',
+                      trimCollapsedText: 'Xem thêm',
+                      trimExpandedText: 'Rút gọn',
                       moreStyle:
                           const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                       lessStyle:
@@ -77,7 +77,7 @@ class ProductDetailScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       TSectionHeading(
-                        title: 'Reviews(199)',
+                        title: 'Đánh giá(199)',
                         onPressed: () {},
                         showActionButton: false,
                       ),

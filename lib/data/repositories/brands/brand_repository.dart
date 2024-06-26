@@ -38,14 +38,16 @@ class BrandRepository extends GetxController {
     try {
       QuerySnapshot brandCategoryQuery = await _db
           .collection('BrandCategory')
-          .where('CategoryId', isEqualTo: categoryId)
+          .where('CategoryId', isEqualTo: int.parse(categoryId))
           .get();
-
+      
+      // print(brandCategoryQuery.docs.length);
       // Extract brand id from document
       List<String> brandIds = brandCategoryQuery.docs
-          .map((doc) => doc['BrandId'] as String)
+          .map((doc) => doc['BrandId'].toString())
           .toList();
 
+      // print(brandIds);
       // Query get all documents where the brand id in list brandIds, feilpath document id to query documnet in collection
       final brandsQuery = await _db
           .collection('Brands')
@@ -57,6 +59,7 @@ class BrandRepository extends GetxController {
       List<BrandModel> brands =
           brandsQuery.docs.map((doc) => BrandModel.fromSnapshot(doc)).toList();
 
+      // print(brands);
       return brands;
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;

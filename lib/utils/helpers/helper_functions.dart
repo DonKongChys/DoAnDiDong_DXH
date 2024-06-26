@@ -3,6 +3,29 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class THelperFunctions {
+  // static Map<String, Color> basicColors = {
+  //   'Red': Colors.red,
+  //   'Pink': Colors.pink,
+  //   'Purple': Colors.purple,
+  //   'DeepPurple': Colors.deepPurple,
+  //   'Indigo': Colors.indigo,
+  //   'Blue': Colors.blue,
+  //   'LightBlue': Colors.lightBlue,
+  //   'Cyan': Colors.cyan,
+  //   'Teal': Colors.teal,
+  //   'Green': Colors.green,
+  //   'LightGreen': Colors.lightGreen,
+  //   'Lime': Colors.lime,
+  //   'Yellow': Colors.yellow,
+  //   'Amber': Colors.amber,
+  //   'Orange': Colors.orange,
+  //   'DeepOrange': Colors.deepOrange,
+  //   'Brown': Colors.brown,
+  //   'Grey': Colors.grey,
+  //   'Black': Colors.black,
+  //   'White': Colors.white,
+  // };
+
   static Map<String, Color> basicColors = {
     'Red': Colors.red,
     'Pink': Colors.pink,
@@ -26,10 +49,32 @@ class THelperFunctions {
     'White': Colors.white,
   };
 
-  static Color? getColor(String value) {
-    return basicColors[value];
-  }
+  static Map<String, String> vietnameseToEnglishColors = {
+    'Trắng': 'White',
+    'Đen': 'Black',
+    'Đỏ': 'Red',
+    'Hồng': 'Pink',
+    'Xanh': 'Blue', // Có thể điều chỉnh nếu cần thiết cho các sắc thái khác nhau
+    'Tím': 'Purple',
+    'Vàng': 'Yellow',
+    'Cam': 'Orange',
+    'Nâu': 'Brown',
+    'Xám': 'Grey',
+    'Xanh lá': 'Green',
+    'Xanh dương': 'Blue', // Có thể điều chỉnh nếu cần thiết cho các sắc thái khác nhau
+  };
 
+  // static Color? getColor(String value) {
+  //   return basicColors[value];
+  // }
+  static Color? getColor(String colorName) {
+    String? englishColorName = vietnameseToEnglishColors[colorName.toLowerCase()];
+    if (englishColorName == null) {
+      return null;
+    }
+    return basicColors[englishColorName];
+  }
+  
   static void showSnackBar(String message) {
     ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
       content: Text(message),

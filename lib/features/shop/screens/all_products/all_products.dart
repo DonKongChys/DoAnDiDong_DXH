@@ -10,9 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AllProducts extends StatelessWidget {
-  const AllProducts({super.key, this.title, this.query, this.futureMethod});
+  const AllProducts({super.key, required this.title, this.query, this.futureMethod});
 
-  final String? title;
+  final String title;
   final Query? query;
   final Future<List<ProductModel>>? futureMethod;
 
@@ -21,8 +21,8 @@ class AllProducts extends StatelessWidget {
     final controller = Get.put(AllProductsController());
 
     return Scaffold(
-      appBar: const TAppBar(
-        title: Text("Sản phẩm phổ biến"),
+      appBar:  TAppBar(
+        title: Text(title),
         showBackArrow: true,
       ),
       body: SingleChildScrollView(

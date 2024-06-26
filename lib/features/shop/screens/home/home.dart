@@ -4,13 +4,12 @@ import 'package:TShop/common/widgets/custom_shapes/containers/search_container.d
 import 'package:TShop/common/widgets/layouts/grid_layout.dart';
 import 'package:TShop/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
+import 'package:TShop/features/shop/controllers/cart_controller.dart';
 import 'package:TShop/features/shop/controllers/product/product_controller.dart';
 import 'package:TShop/features/shop/screens/all_products/all_products.dart';
 import 'package:TShop/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:TShop/features/shop/screens/home/widgets/home_categories.dart';
 import 'package:TShop/utils/constants/size.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'widgets/promo_slider.dart';
@@ -21,6 +20,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProductController());
+    // Get.put(CartController());
     // final len_product = controller.featureProducts.length;
     return Scaffold(
       body: SingleChildScrollView(

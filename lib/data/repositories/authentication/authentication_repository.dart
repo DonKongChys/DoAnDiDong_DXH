@@ -7,6 +7,7 @@ import 'package:TShop/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:TShop/utils/exceptions/firebase_exceptions.dart';
 import 'package:TShop/utils/exceptions/format_exceptions.dart';
 import 'package:TShop/utils/exceptions/platform_exceptions.dart';
+import 'package:TShop/utils/local_storage/storage_utility.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -42,6 +43,11 @@ class AuthenticationRepository extends GetxController {
     if (user != null) {
       // If the user is logged in
       if (user.emailVerified) {
+        
+        // Initialize User specific storage
+        await TLocalStorage.init(user.uid);
+
+
         // If the user's email is verified, navigate to the main Navigation Menu
         Get.offAll(() => const NavigationMenu());
       } else {
@@ -194,27 +200,11 @@ class AuthenticationRepository extends GetxController {
   Future<UserCredential?> signInWithFacebook() async {
     try {
       // // Trigger the authentication flow
-      // final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
-
-      // // Obtain the auth details from the request
-      // final GoogleSignInAuthentication? googleAuth =
-      //     await userAccount?.authentication;
-
-      // // Create a new credential
-      // final credentials = GoogleAuthProvider.credential(
-      //     accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
-
-      // // Once signed in, return the UserCredential
-      // return await _auth.signInWithCredential(credentials);
-
-      // // Trigger the authentication flow
       final LoginResult loginResult = await FacebookAuth.instance.login();
-
 
       // // Create a new credential
       final OAuthCredential facebookAuthCredential =
           FacebookAuthProvider.credential(loginResult.accessToken!.token);
-
 
       // Once signed in, return the UserCredential
       return await _auth.signInWithCredential(facebookAuthCredential);
@@ -269,23 +259,3 @@ class AuthenticationRepository extends GetxController {
     }
   }
 }
-
-// class TPlatformException {
-//   final String message;
-
-//   TPlatformException(this.message);
-// }
-
-// class TFormatException {}
-
-// class TFirebaseAuthException {
-//   final String message;
-
-//   TFirebaseAuthException(this.message);
-// }
-
-// class TFirebaseException {
-//   final String message;
-
-//   TFirebaseException(this.message);
-// }

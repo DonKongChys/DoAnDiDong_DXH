@@ -8,12 +8,14 @@ import 'package:TShop/features/shop/models/brand_model.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/cloud_helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 
 class BrandProducts extends StatelessWidget {
   const BrandProducts({super.key,required this.brand});
 
   final BrandModel brand;
-  
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class BrandProducts extends StatelessWidget {
                 if(widget!=null) return widget;
 
                 final brandProducts  = snapshot.data!;
-
+                print(brandProducts);
                  return  TSortableProducts(products: brandProducts,);
                }
              )

@@ -6,6 +6,7 @@ import 'package:TShop/utils/constants/text_string.dart';
 import 'package:TShop/utils/custom_shimmer/t_shimmer_effect.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 
 class THomeAppBar extends StatelessWidget {
   const THomeAppBar({
@@ -40,7 +41,8 @@ class THomeAppBar extends StatelessWidget {
             }),
           ],
         ),
-        actions: [TCartCounterIcon(onPressed: () {}, iconColor: TColors.white)],
+        // actions: [Icon(Iconsax.shopping_bag, color: TColors.white)],
+        actions: [TCartCounterIcon( iconColor: TColors.white, onPressed: () {  },)],
       ),
     );
   }

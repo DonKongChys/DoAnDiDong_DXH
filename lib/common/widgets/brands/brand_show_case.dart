@@ -5,8 +5,12 @@ import 'package:TShop/features/shop/screens/brands/brand_products.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../utils/custom_shimmer/t_shimmer_effect.dart';
+
 
 class TBrandShowcase extends StatelessWidget {
   const TBrandShowcase({super.key, required this.images,required this.brand});
@@ -49,15 +53,16 @@ class TBrandShowcase extends StatelessWidget {
     return Expanded(
         child: TRoundedContainer(
       height: 100,
-      backgroundColor: THelperFunctions.isDarkMode(context)
-          ? TColors.darkGrey
-          : TColors.light,
+      backgroundColor: THelperFunctions.isDarkMode(context) ? TColors.darkGrey : TColors.light,
       margin: const EdgeInsets.only(right: TSizes.sm),
       padding: const EdgeInsets.all(TSizes.md),
-      child: Image(
-        fit: BoxFit.contain,
-        image: AssetImage(image),
+      child: CachedNetworkImage(
+          fit: BoxFit.contain,
+          imageUrl: image,
+          progressIndicatorBuilder: (context, url, downloadProgress) => const TShimmerEffect(width: 100, height: 100),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
+        ),
       ),
-    ));
+    );
   }
 }

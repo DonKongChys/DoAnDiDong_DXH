@@ -11,16 +11,18 @@ import 'firebase_options.dart';
 
 /// -- Entry point of Flutter App
 
-class MyHttpOverrides extends HttpOverrides{
+class MyHttpOverrides extends HttpOverrides {
   @override
-  HttpClient createHttpClient(SecurityContext? context){
+  HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
-      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }
-Future<void> main() async {
 
-   HttpOverrides.global = MyHttpOverrides();
+Future<void> main() async {
+  HttpOverrides.global = MyHttpOverrides();
+
   /// Widgets binding
   final WidgetsBinding widgetsBinding =
       WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +37,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   ).then((FirebaseApp value) => Get.put(AuthenticationRepository()));
+
   /// --- Upload Dummy Data to Firebase
   // final categoryRepo = Get.put(CategoryRepository());
   // try {
@@ -44,6 +47,6 @@ Future<void> main() async {
   // }
 
   // Load all the Material Design / Themes / Localizations / Bindings
-  
+
   runApp(const App());
 }

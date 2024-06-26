@@ -1,4 +1,5 @@
 
+import 'package:TShop/features/shop/controllers/cart_controller.dart';
 import 'package:TShop/features/shop/controllers/product/images_product.dart';
 import 'package:TShop/features/shop/models/product_model.dart';
 import 'package:TShop/features/shop/models/product_variation_model.dart';
@@ -28,6 +29,13 @@ class VariationController extends GetxController{
     if(selectedVariation.image.isNotEmpty) {
        ImagesController.instance.selectedProductImage.value = selectedVariation.image;
    }
+
+    // Show variation quantity already in cart
+    if(selectedVariation.id.isNotEmpty){
+      final cartController = CartController.instance;
+      cartController.productQuantityInCart.value = cartController.getVariationQuantityInCart(product.id, selectedVariation.id);
+    }
+
    // Assign selected Varition
    this.selectedVariation.value = selectedVariation;
 
@@ -48,7 +56,7 @@ class VariationController extends GetxController{
     return true;
   }
   // Check Attribute avaiability / Stock in Variation 
-  Set<dynamic?> getAttributesAvailabilityInVariation(List<ProductVariationModel> variations, String attributeName) {
+  Set<dynamic> getAttributesAvailabilityInVariation(List<ProductVariationModel> variations, String attributeName) {
     // Pass the variations to check which attributes are available and stock is not 0
     final availableVariationAttributeValues = variations
         .where((variation) => 

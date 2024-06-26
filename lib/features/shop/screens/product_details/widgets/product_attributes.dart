@@ -35,7 +35,7 @@ class TProductAttributes extends StatelessWidget {
                 Row(
                   children: [
                     const TSectionHeading(
-                        title: 'Variation', showActionButton: false),
+                        title: 'Biến thể', showActionButton: false),
                     const SizedBox(width: TSizes.spaceBtwItems),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +43,7 @@ class TProductAttributes extends StatelessWidget {
                         Row(
                           children: [
                             const TProductTitleText(
-                                title: 'Price: ', smallSize: true),
+                                title: 'Giá: ', smallSize: true),
       
                             /// Actual Price
                             if (controller.selectedVariation.value.salePrice > 0)

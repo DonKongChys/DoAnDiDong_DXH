@@ -39,7 +39,6 @@ class ProductController extends GetxController {
       final products = await productRepository.getAllFeaturedProducts();
       return products;
     } catch (e) {
-      print('$e');
       TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
       return [];
     }
@@ -70,11 +69,14 @@ class ProductController extends GetxController {
         if (priceToConsider > largestPrice) {
           largestPrice = priceToConsider;
         }
+        // print('sale price: ${variation.salePrice}');
       }
 
       if (smallestPrice == largestPrice) {
+        // print(formatter.format(largestPrice));
         return formatter.format(largestPrice);
       } else {
+        // print('${formatter.format(smallestPrice)} - ${formatter.format(largestPrice)}');
         return '${formatter.format(smallestPrice)} - ${formatter.format(largestPrice)}';
       }
     }

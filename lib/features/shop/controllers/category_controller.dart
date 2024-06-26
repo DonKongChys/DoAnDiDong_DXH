@@ -55,7 +55,7 @@ class CategoryController extends GetxController {
           .getProductsForCategory(categoryId: categoryId, limit: limit);
       return products;
     } catch (e) {
-      TLoaders.errorSnackBar(title: 'Lỗi', message: e.toString());
+      TLoaders.errorSnackBar(title: 'Lỗi ', message: e.toString());
       return [];
     }
   } 
