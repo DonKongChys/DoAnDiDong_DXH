@@ -3,6 +3,7 @@ import 'package:TShop/common/widgets/custom_shapes/containers/rounded_container.
 import 'package:TShop/common/widgets/icons/t_circular_icon.dart';
 import 'package:TShop/common/widgets/images/t_rounded_image.dart';
 import 'package:TShop/common/widgets/products/cart/add_to_cart_button.dart';
+import 'package:TShop/common/widgets/products/favourite_icon/favourite_icon.dart';
 import 'package:TShop/common/widgets/texts/product_price_text.dart';
 import 'package:TShop/common/widgets/texts/product_title_text.dart';
 import 'package:TShop/common/widgets/texts/t_brand_title_with_verified_icon.dart';
@@ -24,7 +25,10 @@ class TProductCardVertical extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = ProductController.instance;
-    final salePercentage = controller.calculateSalePercentage(product.originalPrice, product.salePrice);
+    final salePercentage = controller.calculateSalePercentage(
+        product.originalPrice, product.salePrice);
+    // final salePercentage =
+    //     controller.calculateSalePercentage(product.price, product.salePrice);
     final dark = THelperFunctions.isDarkMode(context);
 
     return GestureDetector(
@@ -41,16 +45,25 @@ class TProductCardVertical extends StatelessWidget {
           /// Thumbnail, Wishlist button, Discount Tag
           TRoundedContainer(
             height: 180,
+            width: 180,
             padding: const EdgeInsets.all(TSizes.sm),
             backgroundColor: dark ? TColors.dark : TColors.light,
             child: Stack(
               children: [
                 /// -- Thumbnail Image
+                Center(
+                    child: TRoundedImage(
+                        imageUrl: product.thumbnail,
+                        applyImageRadius: true,
+                        isNetworkImage: true)),
+
                 /// // product.thumbnail
-                TRoundedImage(
-                    imageUrl: product.thumbnail, applyImageRadius: true, isNetworkImage: true),
-                //-- Sale Tag
-                if(salePercentage!=null)
+                // TRoundedImage(
+                //     imageUrl: product.thumbnail,
+                //     applyImageRadius: true,
+                //     isNetworkImage: true),
+                // -- Sale Tag
+                if (salePercentage != null)
                   Positioned(
                     top: 12,
                     child: TRoundedContainer(
@@ -69,12 +82,11 @@ class TProductCardVertical extends StatelessWidget {
                   ),
 
                 /// -- Favourite Icon Button
-                const Positioned(
+                Positioned(
                     right: 0,
                     top: 0,
-                    child: TCircularIcon(
-                      icon: Iconsax.heart5,
-                      color: Colors.red,
+                    child: TFavouriteIcon(
+                      productId: product.id,
                     )),
               ],
             ),
@@ -103,26 +115,28 @@ class TProductCardVertical extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-
-
               /// Price
               Flexible(
                 child: Column(
                   children: [
-                    if(product.productType == 'Single' && product.salePrice > 0)
-                    // if(product.salePrice > 0)
+                    if (product.productType == 'Single' &&
+                        product.salePrice > 0)
+                      // if(product.salePrice > 0)
                       Padding(
                           padding: const EdgeInsets.only(left: TSizes.xs),
                           child: Text(
                             product.originalPrice.toString(),
-                            style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
-                          )
-                      ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelMedium!
+                                .apply(decoration: TextDecoration.lineThrough),
+                          )),
+
                     /// Price, show sale price as main price if sale exist
                     Padding(
                         padding: const EdgeInsets.only(left: TSizes.xs),
-                        child: TProductPriceText(price: controller.getProductPrice(product))
-                        ),
+                        child: TProductPriceText(
+                            price: controller.getProductPrice(product))),
                   ],
                 ),
               ),

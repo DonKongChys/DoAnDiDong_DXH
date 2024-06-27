@@ -1,5 +1,4 @@
 
-import 'package:TShop/common/widgets/Loaders/circular_loader.dart';
 import 'package:TShop/data/repositories/address/address_repository.dart';
 import 'package:TShop/features/personalization/models/address_model.dart';
 import 'package:TShop/utils/constants/image_string.dart';

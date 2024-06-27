@@ -43,10 +43,8 @@ class AuthenticationRepository extends GetxController {
     if (user != null) {
       // If the user is logged in
       if (user.emailVerified) {
-        
         // Initialize User specific storage
         await TLocalStorage.init(user.uid);
-
 
         // If the user's email is verified, navigate to the main Navigation Menu
         Get.offAll(() => const NavigationMenu());

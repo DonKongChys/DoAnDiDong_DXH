@@ -2,6 +2,7 @@ import 'package:TShop/common/widgets/appbar/appbar.dart';
 import 'package:TShop/common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
 import 'package:TShop/common/widgets/icons/t_circular_icon.dart';
 import 'package:TShop/common/widgets/images/t_rounded_image.dart';
+import 'package:TShop/common/widgets/products/favourite_icon/favourite_icon.dart';
 import 'package:TShop/features/shop/controllers/product/images_product.dart';
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/size.dart';
@@ -14,15 +15,19 @@ import 'package:TShop/features/shop/models/product_model.dart';
 
 class TProductImageSlider extends StatelessWidget {
   const TProductImageSlider({
-    super.key, required this.product,
+    super.key,
+    required this.product,
   });
+
   final ProductModel product;
+
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
 
     final controller = Get.put(ImagesController());
-    final images =  controller.getAllProductImages(product);
+    final images = controller.getAllProductImages(product);
+
     return TCurvedEdgeWidget(
       child: Container(
           color: dark ? TColors.darkGrey : TColors.light,
@@ -32,19 +37,22 @@ class TProductImageSlider extends StatelessWidget {
               SizedBox(
                   height: 400,
                   child: Padding(
-                    padding: const EdgeInsets.all(TSizes.productImageRadius * 2),
-                    child: Center(
-                        child: Obx(() {
-                          final image = controller.selectedProductImage.value;
-                          return GestureDetector(
-                            onTap: ()=> controller.showEnlargedImage(image),
-                            child: CachedNetworkImage(
-                              imageUrl: image, 
-                              progressIndicatorBuilder: (_, __, DownloadProgress) => 
-                                CircularProgressIndicator(value: DownloadProgress.progress, color: TColors.primary),),
-                          );
-                          })),
-                          // return const Image(image: AssetImage(TImages.product1));})),
+                    padding:
+                        const EdgeInsets.all(TSizes.productImageRadius * 2),
+                    child: Center(child: Obx(() {
+                      final image = controller.selectedProductImage.value;
+                      return GestureDetector(
+                        onTap: () => controller.showEnlargedImage(image),
+                        child: CachedNetworkImage(
+                          imageUrl: image,
+                          progressIndicatorBuilder: (_, __, DownloadProgress) =>
+                              CircularProgressIndicator(
+                                  value: DownloadProgress.progress,
+                                  color: TColors.primary),
+                        ),
+                      );
+                    })),
+                    // return const Image(image: AssetImage(TImages.product1));})),
                   )),
 
               /// image slider
@@ -61,32 +69,32 @@ class TProductImageSlider extends StatelessWidget {
                       physics: const AlwaysScrollableScrollPhysics(),
                       separatorBuilder: (_, __) =>
                           const SizedBox(width: TSizes.spaceBtwItems),
-                      itemBuilder: (_, index) => Obx(
-                        () {
-                          final imageSelected = controller.selectedProductImage.value == images[index];
-                          return TRoundedImage(
+                      itemBuilder: (_, index) => Obx(() {
+                            final imageSelected =
+                                controller.selectedProductImage.value ==
+                                    images[index];
+                            return TRoundedImage(
                               width: 80,
                               isNetworkImage: true,
-                              imageUrl: images[index],    
-                              padding: const EdgeInsets.all(TSizes.sm),                         
-                              backgroundColor: dark ? TColors.dark : TColors.light,
-                              onPressed: () => controller.selectedProductImage.value = images[index],
-                              border: Border.all(color: imageSelected ? TColors.primary : Colors.transparent),
+                              imageUrl: images[index],
+                              padding: const EdgeInsets.all(TSizes.sm),
+                              backgroundColor:
+                                  dark ? TColors.dark : TColors.light,
+                              onPressed: () => controller
+                                  .selectedProductImage.value = images[index],
+                              border: Border.all(
+                                  color: imageSelected
+                                      ? TColors.primary
+                                      : Colors.transparent),
                             );
-                        }
-                      )),
+                          })),
                 ),
               ),
 
-              ///app bar
-              const TAppBar(
+              /// Appbar Icons
+              TAppBar(
                 showBackArrow: true,
-                actions: [
-                  TCircularIcon(
-                    icon: Iconsax.heart5,
-                    color: Colors.red,
-                  )
-                ],
+                actions: [TFavouriteIcon(productId: product.id,)],
               )
             ],
           )),

@@ -4,7 +4,6 @@ import 'package:TShop/features/shop/models/product_model.dart';
 import 'package:TShop/utils/local_storage/storage_utility.dart';
 import 'package:TShop/utils/popups/loaders.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class CartController extends GetxController {
   static CartController get instance => Get.find();

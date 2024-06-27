@@ -4,7 +4,6 @@ import 'package:TShop/common/widgets/brands/brand_card.dart';
 import 'package:TShop/common/widgets/layouts/grid_layout.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
 import 'package:TShop/features/shop/controllers/brand_controller.dart';
-import 'package:TShop/features/shop/models/brand_model.dart';
 import 'package:TShop/features/shop/screens/brands/brand_products.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:flutter/material.dart';

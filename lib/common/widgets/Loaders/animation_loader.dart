@@ -61,8 +61,6 @@
 //   }
 // }
 
-
-
 import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:flutter/material.dart';
@@ -93,9 +91,11 @@ class TAnimationLoaderWidget extends StatelessWidget {
         children: [
           isLottie
               ? Lottie.asset(animation,
-                  width: MediaQuery.of(context).size.width * 0.8) // display lottie animation
+                  width: MediaQuery.of(context).size.width *
+                      0.8) // display lottie animation
               : Image.asset(animation,
-                  width: MediaQuery.of(context).size.width * 0.8), // display gif animation
+                  width: MediaQuery.of(context).size.width *
+                      0.8), // display gif animation
           const SizedBox(
             height: TSizes.defaultSpace,
           ),

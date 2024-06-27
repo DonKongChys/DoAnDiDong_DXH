@@ -10,7 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AllProducts extends StatelessWidget {
-  const AllProducts({super.key, required this.title, this.query, this.futureMethod});
+  const AllProducts(
+      {super.key, required this.title, this.query, this.futureMethod});
 
   final String title;
   final Query? query;
@@ -18,10 +19,12 @@ class AllProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Initialize controller for managing product fetching
     final controller = Get.put(AllProductsController());
 
     return Scaffold(
-      appBar:  TAppBar(
+      /// Appbar
+      appBar: TAppBar(
         title: Text(title),
         showBackArrow: true,
       ),

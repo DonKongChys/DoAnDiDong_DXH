@@ -6,7 +6,6 @@ import 'package:TShop/utils/constants/text_string.dart';
 import 'package:TShop/utils/custom_shimmer/t_shimmer_effect.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 
 class THomeAppBar extends StatelessWidget {
   const THomeAppBar({

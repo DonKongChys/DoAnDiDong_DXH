@@ -8,7 +8,6 @@ import 'package:TShop/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
 import 'package:TShop/features/shop/controllers/brand_controller.dart';
 import 'package:TShop/features/shop/controllers/category_controller.dart';
-import 'package:TShop/features/shop/models/brand_model.dart';
 import 'package:TShop/features/shop/screens/brands/all_brands.dart';
 import 'package:TShop/features/shop/screens/brands/brand_products.dart';
 import 'package:TShop/features/shop/screens/store/widgets/category_tab.dart';

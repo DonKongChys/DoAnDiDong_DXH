@@ -1,4 +1,3 @@
-
 import 'package:TShop/features/shop/models/product_model.dart';
 import 'package:TShop/utils/exceptions/firebase_exceptions.dart';
 import 'package:TShop/utils/exceptions/platform_exceptions.dart';
@@ -6,12 +5,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+/// Repository for managing product-related data and operations.
 class ProductRepository extends GetxController {
   static ProductRepository get instance => Get.find();
 
+  /// Firestore instance for database interactions
   final _db = FirebaseFirestore.instance;
-
-  //Get limited featured products
 
   /// Get limited featured products
   Future<List<ProductModel>> getFeaturedProducts() async {
@@ -19,7 +18,7 @@ class ProductRepository extends GetxController {
       final snapshot = await _db
           .collection('Products')
           .where('IsFeatured', isEqualTo: true)
-          .limit(40)
+          .limit(4)
           .get();
       return snapshot.docs.map((e) => ProductModel.fromSnapshot(e)).toList();
     } on FirebaseException catch (e) {
@@ -32,14 +31,12 @@ class ProductRepository extends GetxController {
     }
   }
 
-
-    /// Get limited featured products
-  
+  /// Get limited featured products
   Future<List<ProductModel>> getAllFeaturedProducts() async {
     try {
       final snapshot = await _db
           .collection('Products')
-          .where('IsFeatured', isEqualTo: true).limit(40)
+          .where('IsFeatured', isEqualTo: true)
           .get();
       return snapshot.docs.map((e) => ProductModel.fromSnapshot(e)).toList();
     } on FirebaseException catch (e) {
@@ -52,15 +49,35 @@ class ProductRepository extends GetxController {
     }
   }
 
-
-// Get products base on query
+// Get products base on the Query
   Future<List<ProductModel>> fetchProductsByQuery(Query query) async {
     try {
-      final QuerySnapshot querySnapshot = await query.get();
+      final querySnapshot = await query.get();
       final List<ProductModel> productsList = querySnapshot.docs
           .map((doc) => ProductModel.fromQuerySnapshot(doc))
           .toList();
       return productsList;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      print('General exception: $e');
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+  // Get products base on the Query
+  Future<List<ProductModel>> getFavouriteProducts(
+      List<String> productIds) async {
+    try {
+      final snapshot = await _db
+          .collection('Products')
+          .where(FieldPath.documentId, whereIn: productIds)
+          .get();
+      return snapshot.docs
+          .map((querySnapshot) => ProductModel.fromSnapshot(querySnapshot))
+          .toList();
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on PlatformException catch (e) {
@@ -90,7 +107,7 @@ class ProductRepository extends GetxController {
       final products = querySnapshot.docs
           .map((doc) => ProductModel.fromSnapshot(doc))
           .toList();
-      
+
       // print(products);
 
       return products;
@@ -105,31 +122,32 @@ class ProductRepository extends GetxController {
 
   // Get product for category
   Future<List<ProductModel>> getProductsForCategory(
-      {required String categoryId, int limit = -1}) async {
+      {required String categoryId, int limit = 4}) async {
     try {
-      final productCategoryQuery = limit == -1
+      // Query to get all documents where productId matches the provided categoryId & Fetch limited or unimited based on limit
+      QuerySnapshot productCategoryQuery = limit == -1
           ? await _db
               .collection('ProductCategory')
-              .where('CategoryId', isEqualTo: int.parse(categoryId))
+              .where('CategoryId', isEqualTo: categoryId)
               .get()
           : await _db
               .collection('ProductCategory')
-              .where('CategoryId', isEqualTo: int.parse(categoryId))
+              .where('CategoryId', isEqualTo: categoryId)
               .limit(limit)
               .get();
 
-
-      // Extract product ids
+      // Extract productIds from the documents
       List<String> productIds = productCategoryQuery.docs
           .map((doc) => doc['ProductId'].toString())
           .toList();
 
-      // Products query
+      // Query to get all documents where the brandId is in the list or brandIds, FieldPath.documentId to query documents in Collection
       final productsQuery = await _db
           .collection('Products')
           .where(FieldPath.documentId, whereIn: productIds)
           .get();
 
+      // Extract brand names or other relevant data from the documents
       List<ProductModel> products = productsQuery.docs
           .map((doc) => ProductModel.fromSnapshot(doc))
           .toList();

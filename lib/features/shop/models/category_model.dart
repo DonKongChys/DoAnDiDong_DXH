@@ -14,33 +14,37 @@ class CategoryModel {
     required this.isFeatured,
     this.parentId = '',
   });
-  /// Empty Helper Function
-  static CategoryModel empty() => CategoryModel(id: '', image: '', name: '', isFeatured: false);
 
-/// Convert model to Json structure so that you can store data in Firebase
-Map<String,dynamic>toJson(){
-  return{
-    'Name': name,
-    'Image': image,
-    'ParentId': parentId,
-    'IsFeatured': isFeatured,
-  };
-}
-/// Map Json oriented document snapshot from Firebase to UserModel
-factory CategoryModel.fromSnapshot (DocumentSnapshot<Map<String, dynamic>> document) {
+  /// Empty Helper Function
+  static CategoryModel empty() =>
+      CategoryModel(id: '', image: '', name: '', isFeatured: false);
+
+  /// Convert model to Json structure so that you can store data in Firebase
+  Map<String, dynamic> toJson() {
+    return {
+      'Name': name,
+      'Image': image,
+      'ParentId': parentId,
+      'IsFeatured': isFeatured,
+    };
+  }
+
+  /// Map Json oriented document snapshot from Firebase to UserModel
+  factory CategoryModel.fromSnapshot(
+      DocumentSnapshot<Map<String, dynamic>> document) {
     if (document.data() != null) {
       final data = document.data()!;
-// Map JSON Record to the Model
+
+      // Map JSON Record to the Model
       return CategoryModel(
-          id: document.id.toString(),
-          name: data['Name'] ?? '',
-          image: data['Image'] ?? '',
-          parentId: data['ParentId'] ?? '',
-          isFeatured: data['IsFeatured'] ?? false,
+        id: document.id,
+        name: data['Name'] ?? '',
+        image: data['Image'] ?? '',
+        parentId: data['ParentId'] ?? '',
+        isFeatured: data['IsFeatured'] ?? false,
       );
     } else {
-          return CategoryModel.empty();
+      return CategoryModel.empty();
     }
-
- }
+  }
 }

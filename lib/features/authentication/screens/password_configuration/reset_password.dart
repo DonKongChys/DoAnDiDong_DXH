@@ -71,12 +71,12 @@ class ResetPasswordScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () => Get.offAll(() => const LoginScreen()),
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
+                    backgroundColor: WidgetStateProperty.all<Color>(
                         const Color.fromARGB(
                             255, 145, 14, 4)), // Thiết lập màu nền
-                    overlayColor: MaterialStateProperty.all<Color>(
+                    overlayColor: WidgetStateProperty.all<Color>(
                         Colors.red.shade200), // Thiết lập màu overlay khi nhấn
-                    side: MaterialStateProperty.all<BorderSide>(
+                    side: WidgetStateProperty.all<BorderSide>(
                         const BorderSide(
                             color: Color.fromARGB(
                                 255, 137, 13, 4))), // Thiết lập màu viền

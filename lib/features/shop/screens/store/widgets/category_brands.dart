@@ -6,7 +6,6 @@ import 'package:TShop/common/shimmer/list_tile_shimmer.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/cloud_helper_functions.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CategoryBrands extends StatelessWidget {
   const CategoryBrands({super.key, required this.category});

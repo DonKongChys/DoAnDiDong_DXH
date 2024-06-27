@@ -20,16 +20,16 @@ class TShimmerEffect extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
     return Shimmer.fromColors(
-        baseColor: dark ? Colors.grey[850]! : Colors.grey[300]!,
-        highlightColor: dark ? Colors.grey[700]! : Colors.grey[100]!,
-        child: Container(
+      baseColor: dark ? Colors.grey[850]! : Colors.grey[300]!,
+      highlightColor: dark ? Colors.grey[700]! : Colors.grey[100]!,
+      child: Container(
         width: width,
         height: height,
         decoration: BoxDecoration(
-        color: color ?? (dark ? TColors. darkerGrey : TColors.white),
-        borderRadius: BorderRadius.circular(radius),
-    ), // BoxDecoration
-    ), // Container
+          color: color ?? (dark ? TColors.darkerGrey : TColors.white),
+          borderRadius: BorderRadius.circular(radius),
+        ), // BoxDecoration
+      ), // Container
     ); // Shimmer.fromColors
   }
 }

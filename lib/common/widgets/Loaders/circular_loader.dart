@@ -4,7 +4,7 @@ class TCircularLoader extends StatelessWidget {
   final double size;
   final Color color;
 
-  TCircularLoader(double d, MaterialColor blue, {this.size = 50.0, this.color = Colors.blue});
+  const TCircularLoader(double d, MaterialColor blue, {super.key, this.size = 50.0, this.color = Colors.blue});
 
   @override
   Widget build(BuildContext context) {

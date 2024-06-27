@@ -4,7 +4,6 @@ import 'package:TShop/common/widgets/products/product_cards/product_card_vertica
 import 'package:TShop/common/widgets/texts/section_heading.dart';
 import 'package:TShop/features/shop/controllers/category_controller.dart';
 import 'package:TShop/features/shop/screens/all_products/all_products.dart';
-import 'package:TShop/features/shop/screens/store/widgets/category_brands.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/cloud_helper_functions.dart';
 import 'package:flutter/material.dart';
