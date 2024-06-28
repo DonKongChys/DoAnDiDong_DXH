@@ -113,13 +113,14 @@ class TAnimationLoaderWidget extends StatelessWidget {
                   child: OutlinedButton(
                     onPressed: onActionPressed,
                     style:
-                        OutlinedButton.styleFrom(backgroundColor: TColors.dark),
+                        OutlinedButton.styleFrom(backgroundColor: TColors.dark,  ),
                     child: Text(
                       actionText!,
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
                           .apply(color: TColors.light),
+                          
                     ),
                   ),
                 )

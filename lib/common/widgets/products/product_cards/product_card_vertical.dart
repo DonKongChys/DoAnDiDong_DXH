@@ -1,6 +1,5 @@
 import 'package:TShop/common/styles/shadows.dart';
 import 'package:TShop/common/widgets/custom_shapes/containers/rounded_container.dart';
-import 'package:TShop/common/widgets/icons/t_circular_icon.dart';
 import 'package:TShop/common/widgets/images/t_rounded_image.dart';
 import 'package:TShop/common/widgets/products/cart/add_to_cart_button.dart';
 import 'package:TShop/common/widgets/products/favourite_icon/favourite_icon.dart';
@@ -14,7 +13,6 @@ import 'package:TShop/utils/constants/colors.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:get/get.dart';
 
 class TProductCardVertical extends StatelessWidget {

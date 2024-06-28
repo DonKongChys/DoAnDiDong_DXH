@@ -2,7 +2,7 @@ enum TextSizes {
   small, medium, large,
 }
 enum OrderStatus {
-  processing, shipped, delivered
+  processing, shipped, delivered,pending
 }
 
 enum PaymentMethods {

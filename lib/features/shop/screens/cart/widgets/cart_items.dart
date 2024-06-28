@@ -47,7 +47,7 @@ class TCartItems extends StatelessWidget {
                       ],
                     ),
                     //Add Remove Button
-                    TProductPriceText(price: (item.price!*item.quantity).toStringAsFixed(1)),
+                    TProductPriceText(priceTemp: item.price!*item.quantity, price: '',),
                   ],
                 )
             ],

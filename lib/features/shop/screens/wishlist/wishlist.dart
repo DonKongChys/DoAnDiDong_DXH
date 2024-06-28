@@ -5,7 +5,6 @@ import 'package:TShop/common/widgets/icons/t_circular_icon.dart';
 import 'package:TShop/common/widgets/layouts/grid_layout.dart';
 import 'package:TShop/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:TShop/features/shop/controllers/product/favourites_controller.dart';
-import 'package:TShop/features/shop/models/product_model.dart';
 import 'package:TShop/features/shop/screens/home/home.dart';
 import 'package:TShop/navigation_menu.dart';
 import 'package:TShop/utils/constants/image_string.dart';

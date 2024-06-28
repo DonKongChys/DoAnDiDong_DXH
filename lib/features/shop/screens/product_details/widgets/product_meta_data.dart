@@ -49,9 +49,9 @@ class TProductMetaData extends StatelessWidget {
                   .titleSmall!
                   .apply(decoration: TextDecoration.lineThrough)),
          
-          if(product.productType == 'Single' && product.salePrice > 0) const SizedBox(width: TSizes.spaceBtwItems),
+          if(product.productType == 'Single' && product.salePrice > 0) const SizedBox(width: TSizes.spaceBtwItems/2),
           TProductPriceText(
-            price: controller.getProductPrice(product),
+            price: controller.getProductPrice(product).substring(0, controller.getProductPrice(product).length - 1),
             isLarge: true,
           ),
         ],

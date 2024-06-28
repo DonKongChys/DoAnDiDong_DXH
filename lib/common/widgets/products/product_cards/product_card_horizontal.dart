@@ -7,7 +7,6 @@ import 'package:TShop/common/widgets/texts/t_brand_title_with_verified_icon.dart
 import 'package:TShop/features/shop/controllers/product/product_controller.dart';
 import 'package:TShop/features/shop/models/product_model.dart';
 import 'package:TShop/utils/constants/colors.dart';
-import 'package:TShop/utils/constants/image_string.dart';
 import 'package:TShop/utils/constants/size.dart';
 import 'package:TShop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';

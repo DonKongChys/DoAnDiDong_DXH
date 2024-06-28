@@ -61,7 +61,7 @@ class VariationController extends GetxController{
     final availableVariationAttributeValues = variations
         .where((variation) => 
             // check empty / out of stock attributes
-            variation.attributeValues[attributeName] != null && variation.attributeValues[attributeName]!.isNotEmpty && variation.stock > 0)
+            variation.attributeValues[attributeName] != null && variation.attributeValues[attributeName] is String && variation.attributeValues[attributeName].isNotEmpty && variation.stock > 0)
         // Setch all non-empty attributes of variations
         .map((variation) => variation.attributeValues[attributeName])
         .toSet();

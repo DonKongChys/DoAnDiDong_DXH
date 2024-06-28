@@ -10,6 +10,8 @@ class ProductController extends GetxController {
   final isLoading = false.obs;
   final productRepository = Get.put(ProductRepository());
   RxList<ProductModel> featureProducts = <ProductModel>[].obs;
+  RxList<ProductModel> searchedProducts = <ProductModel>[].obs;
+  final searchText = ''.obs;
 
   @override
   void onInit() {
@@ -44,8 +46,20 @@ class ProductController extends GetxController {
     }
   }
 
+  //Search product
+  void searchProducts(String query) {
+    searchText.value = query;
+    if (query.isEmpty) {
+      searchedProducts.assignAll(featureProducts);
+    } else {
+      searchedProducts.assignAll(
+        featureProducts.where((product) => product.title.toLowerCase().contains(query.toLowerCase())).toList(),
+      );
+    }
+  }
   // Get the product price or price range for variations
   String getProductPrice(ProductModel product) {
+
     double smallestPrice = double.infinity;
     double largestPrice = 0.0;
     final formatter = NumberFormat.currency(locale: 'vi_VN', symbol: 'đ');
@@ -54,6 +68,7 @@ class ProductController extends GetxController {
     if (product.productType == 'Single') {
       double priceToConsider =
           product.salePrice > 0 ? product.salePrice : product.originalPrice;
+        
       return formatter.format(priceToConsider);
     } else {
       // Calculate the smallest and largest prices among variations

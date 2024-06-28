@@ -1,6 +1,6 @@
 import 'package:TShop/common/shimmer/vertical_product_shimmer.dart';
 import 'package:TShop/common/widgets/custom_shapes/containers/primary_header_container.dart';
-import 'package:TShop/common/widgets/custom_shapes/containers/search_container.dart';
+import 'package:TShop/common/widgets/custom_shapes/containers/search_product_page.dart';
 import 'package:TShop/common/widgets/layouts/grid_layout.dart';
 import 'package:TShop/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:TShop/common/widgets/texts/section_heading.dart';
@@ -19,25 +19,28 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProductController());
-    // Get.put(CartController());
-    // final len_product = controller.featureProducts.length;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             /// Header
-            const TPrimaryHeaderContainer(
-                child: Column(
-              children: [
-                /// App bar
-                THomeAppBar(),
+            TPrimaryHeaderContainer(
+              child: Column(
+                children: [
+                  /// App bar
+                  const THomeAppBar(),
 
-                /// Search bar
-                TSearchContainer(text: "Nhập sản phẩm..."),
-                SizedBox(height: TSizes.spaceBtwSections),
+                  /// Search bar
+                  // TSearchContainer(text: "Nhập sản phẩm..."),
+                  TSearchContainer1(
+                    textController: TextEditingController(),
+                    onChanged: (query) => controller.searchProducts(query),
+                  ),
+                  const SizedBox(height: TSizes.spaceBtwSections),
 
-                /// Categories
-                Padding(
+                  /// Categories
+                  const Padding(
                     padding: EdgeInsets.only(left: TSizes.defaultSpace),
                     child: Column(
                       children: [
@@ -50,14 +53,16 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(height: TSizes.spaceBtwItems),
 
                         // List_Categories
-                        THomeCategories()
+                        THomeCategories(),
                       ],
-                    )),
-                SizedBox(
-                  height: TSizes.spaceBtwSections,
-                )
-              ],
-            )),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: TSizes.spaceBtwSections,
+                  ),
+                ],
+              ),
+            ),
 
             /// Body
             Padding(
@@ -84,15 +89,20 @@ class HomeScreen extends StatelessWidget {
                       return const TVerticalProductShimmer();
                     }
 
-                    if (controller.featureProducts.isEmpty) {
+                    final productsToShow = controller.searchedProducts.isEmpty
+                        ? controller.featureProducts
+                        : controller.searchedProducts;
+
+                    if (productsToShow.isEmpty) {
                       return Center(
                           child: Text('Không có sản phẩm nào!',
                               style: Theme.of(context).textTheme.bodyMedium));
                     }
                     return TGridLayout(
-                        itemCount: 40,
+                        itemCount: productsToShow.length,
                         itemBuilder: (_, index) => TProductCardVertical(
-                            product: controller.featureProducts[index]));
+                            product: productsToShow[index])
+                            );
                   }),
                 ],
               ),

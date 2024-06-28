@@ -71,7 +71,7 @@ class CartScreen extends StatelessWidget {
                     foregroundColor: Colors.white, backgroundColor: TColors.primary,
                     side: BorderSide.none, 
   ),
-                child: Text('Thanh toán ${controller.totalCartPrice.value}đ'),
+                child: Text('Thanh toán ${controller.formatPrice(controller.totalCartPrice.value)}đ'),
               ),
             ),
     );

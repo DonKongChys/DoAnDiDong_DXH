@@ -11,7 +11,7 @@ class AddressRepository extends GetxController{
 
   Future<List<AddressModel>> fetchUserAddresses() async {
     try{
-      final userId = AuthenticationRepository.instance.authUser!.uid;
+      final userId = AuthenticationRepository.instance.authUser.uid;
       if (userId.isEmpty) throw 'Không tìm thấy người dùng!';
 
       final result = await _db.collection('Users').doc(userId).collection('Addresses').get();
@@ -24,7 +24,7 @@ class AddressRepository extends GetxController{
   // Clear the 'selected' field for all addresses
   Future<void> updateSelectedField(String adddressId, bool selected) async{
     try{
-      final userId = AuthenticationRepository.instance.authUser!.uid;
+      final userId = AuthenticationRepository.instance.authUser.uid;
       await _db.collection('Users').doc(userId).collection('Addresses').doc(adddressId).update({'SelectedAddress': selected});
     } catch(e){
       throw 'Lỗi khi cập nhật địa chỉ.!';
@@ -34,7 +34,7 @@ class AddressRepository extends GetxController{
   // Store new user order
   Future<String> addAddress(AddressModel address) async{
     try{
-      final userId = AuthenticationRepository.instance.authUser!.uid;
+      final userId = AuthenticationRepository.instance.authUser.uid;
       final currentAddress = await _db.collection('Users').doc(userId).collection('Addresses').add(address.toJson());
       return currentAddress.id;
     }catch(e){

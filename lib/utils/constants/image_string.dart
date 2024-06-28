@@ -8,6 +8,11 @@ class TImages {
   static const String facebook = "assets/logos/facebook_icon.png";
   static const String google = "assets/logos/google_icon.png";
 
+  // Checkout method Logos
+  static const String paypal = "assets/logos/paypal_logo.png";
+  static const String momo = "assets/logos/momo.webp";
+  static const String visa = "assets/logos/visa.svg";
+
   // onboarding image
   static const String onBoardingImage3 =
       "assets/images/on_boarding_images/sammy-line-delivering.jpg";
@@ -81,5 +86,6 @@ class TImages {
 
   static const String cartAnimation = "assets/images/cart/cart_animation.gif";
   // static const String cartAnimation = "assets/images/verify_email/succesfulluRegisterAnimation.gif";
-
+  static const String pencilAnimation = "assets/images/animation/pencil_drawing.json";
+  static const String orderCompletedAnimation = "assets/images/animation/order_completed.json";
 }
